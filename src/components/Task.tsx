@@ -2,9 +2,10 @@ import { IconCross } from "./svg";
 
 export type TaskProps = {
   children: React.ReactNode;
+  todoItemValue: string;
 };
 
-export const Task = ({ children }: TaskProps) => {
+export const Task = ({ children, todoItemValue }: TaskProps) => {
   return (
     <div className="py-4 bg-box   flex justify-between items-center px-3  border-b border-[#4d5066]">
       {children}
@@ -13,7 +14,7 @@ export const Task = ({ children }: TaskProps) => {
         className="w-11/12 bg-inherit outline-none px-2  text-lg color-box placeholder:text-sm select-none"
         placeholder="Create a new todo..."
         readOnly
-        value={"I am good"}
+        value={todoItemValue}
       />
       <IconCross
         onClick={() => console.log("ic click")}

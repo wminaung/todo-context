@@ -1,10 +1,22 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
-type MainContentProps = {
-  name: string;
-  setName: React.Dispatch<React.SetStateAction<string>>;
+export type TodoListState = {
+  todoItem: string;
+  todoId: number;
+  isCheck: boolean;
+};
+export type ThemeState = "dark" | "light";
+export type MainContextProps = {
+  todoList: TodoListState[];
+  setTodoList: React.Dispatch<React.SetStateAction<TodoListState[]>>;
+  theme: ThemeState;
+  setTheme: React.Dispatch<React.SetStateAction<ThemeState>>;
+  // handleKeyup: (
+  //   e: React.KeyboardEvent<HTMLInputElement>,
+  //   inputRef: React.MutableRefObject<any>
+  // ) => void;
 };
 
-export const MainContext = createContext<MainContentProps>(
-  {} as MainContentProps
+export const MainContext = createContext<MainContextProps>(
+  {} as MainContextProps
 );

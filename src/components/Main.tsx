@@ -7,9 +7,12 @@ import bgMbDk from "./../assets/images/bg-mobile-dark.jpg";
 import bgDtDk from "./../assets/images/bg-desktop-dark.jpg";
 import { Heading } from "./Heading";
 import { Theme } from "./Theme";
+import { ChangeEvent, useContext } from "react";
+import { MainContext } from "./context/MainContext";
 
 export const Main = () => {
-  console.count("main render");
+  const { theme, setTheme, todoList, setTodoList } = useContext(MainContext);
+  console.log(theme, todoList);
   return (
     <div className="Main my-0 mx-auto pt-12">
       <img
@@ -29,7 +32,7 @@ export const Main = () => {
       <ActionTasks>
         <Actions
           className={
-            "absolute -bottom-[130%] bg-inherit rounded-md left-0 h-full w-full text-white flex items-center justify-center gap-x-4"
+            "absolute -bottom-[130%] bg-inherit rounded-md left-0 h-full w-full  flex items-center justify-center gap-x-4"
           }
         />
       </ActionTasks>
