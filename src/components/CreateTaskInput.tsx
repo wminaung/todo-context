@@ -1,28 +1,11 @@
-import React, { memo, useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { MainContext } from "./context/MainContext";
 
 type CreateTaskInputProps = {
   children: React.ReactNode;
 };
 export const CreateTaskInput = ({ children }: CreateTaskInputProps) => {
-  const { todoList, setTodoList } = useContext(MainContext);
-
-  const handleKeyup = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    inputRef: React.MutableRefObject<any>
-  ) => {
-    if (e.key === "Enter") {
-      setTodoList([
-        ...todoList,
-        {
-          isCheck: true,
-          todoItem: inputRef.current?.value,
-          todoId: todoList.length,
-        },
-      ]);
-      inputRef.current.value = "";
-    }
-  };
+  const { handleCreateTaskInputKeyup } = useContext(MainContext);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -32,7 +15,7 @@ export const CreateTaskInput = ({ children }: CreateTaskInputProps) => {
       <input
         ref={inputRef}
         onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          handleKeyup(e, inputRef);
+          handleCreateTaskInputKeyup(e, inputRef);
         }}
         type="text"
         className="w-11/12 bg-inherit outline-none px-2  text-lg color-box placeholder:text-sm select-none"

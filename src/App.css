@@ -6,7 +6,6 @@ body {
   font-size: var(--font-size);
 }
 .App {
-  background-color: gray;
   overflow-x: hidden;
 }
 
@@ -14,7 +13,7 @@ body {
   max-width: var(--desktop);
   min-width: var(--moblile);
   margin: 0 auto;
-  background-color: var(--very-dark-blue);
+
   min-height: 100vh;
 }
 
@@ -63,13 +62,12 @@ body {
 }
 .fill-check-circle {
 }
-/* Main */
-.Main {
-}
+
 .dd {
   color: #393a4c;
-  color: #777a92;
+  color: #fafafa;
   color: #4d5066;
+  color: #161722;
 }
 #todo {
   letter-spacing: 8px;

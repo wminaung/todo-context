@@ -1,11 +1,22 @@
+import { useContext } from "react";
+import { MainContext } from "./context/MainContext";
 import { IconCross } from "./svg";
 
 export type TaskProps = {
-  children: React.ReactNode;
+  children: React.ReactNode; // CheckUnCheck
   todoItemValue: string;
+  todoId: string;
+  isCheck: boolean;
 };
 
-export const Task = ({ children, todoItemValue }: TaskProps) => {
+export const Task = ({
+  children,
+  todoItemValue,
+  todoId,
+  isCheck,
+}: TaskProps) => {
+  const { handleTaskDelete } = useContext(MainContext);
+
   return (
     <div className="py-4 bg-box   flex justify-between items-center px-3  border-b border-[#4d5066]">
       {children}
@@ -17,7 +28,7 @@ export const Task = ({ children, todoItemValue }: TaskProps) => {
         value={todoItemValue}
       />
       <IconCross
-        onClick={() => console.log("ic click")}
+        onClick={() => handleTaskDelete(todoId, isCheck)}
         className="hover:cursor-pointer hover:opacity-80 active:opacity-100"
       />
     </div>
