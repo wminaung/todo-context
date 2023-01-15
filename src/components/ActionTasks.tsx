@@ -6,7 +6,7 @@ type ActionTasksProps = {
 };
 
 export const ActionTasks = ({ children }: ActionTasksProps) => {
-  const { todoList } = useContext(MainContext);
+  const { todoList, handleClearComplete } = useContext(MainContext);
   const leftItems = todoList.filter((todo) => !todo.isCheck).length;
   return (
     <div className="relative py-4  text-white bg-box w-11/12 mx-auto flex justify-between items-center px-3   text-sm rounded-b-lg">
@@ -14,7 +14,7 @@ export const ActionTasks = ({ children }: ActionTasksProps) => {
         {leftItems <= 1 ? `${leftItems} item left` : `${leftItems} items left`}{" "}
       </div>
       {children}
-      <div>Clear Complete</div>
+      <button onClick={handleClearComplete}>Clear Complete</button>
     </div>
   );
 };

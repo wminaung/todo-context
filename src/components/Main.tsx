@@ -12,9 +12,7 @@ import { Task } from "./Task";
 import { TodoTasks } from "./TodoTasks";
 
 export const Main = () => {
-  const { todoList } = useContext(MainContext);
-
-  const cpyTodoList = [...todoList];
+  const { cpyTodoList, theme } = useContext(MainContext);
 
   return (
     <div className={`Main my-0 mx-auto pt-12`}>
@@ -24,7 +22,7 @@ export const Main = () => {
         alt="backgroundImg"
       />
       <Heading h1="TODO">
-        <Theme theme="light" />
+        <Theme theme={theme} />
       </Heading>
       <CreateTaskInput>
         <CheckUnCheck readonly />

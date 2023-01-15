@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MainContext } from "./context/MainContext";
 import { IconMoon, IconSun } from "./svg";
 
-type ThemeProps = {
+export type ThemeProps = {
   theme: "dark" | "light";
 };
 export const Theme = ({ theme }: ThemeProps) => {
+  const { changeTheme } = useContext(MainContext);
+
+  const handleChangeTheme = () => {
+    changeTheme(theme);
+  };
+
   const themeClass = "cursor-pointer hover:opacity-70";
   if (theme === "dark") {
-    return <IconSun className={themeClass} />;
+    return <IconSun onClick={handleChangeTheme} className={themeClass} />;
   }
-  return <IconMoon className={themeClass} />;
+  return <IconMoon onClick={handleChangeTheme} className={themeClass} />;
 };

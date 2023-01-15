@@ -22,7 +22,9 @@ export const Task = ({
       {children}
       <input
         type="text"
-        className="w-11/12 bg-inherit outline-none px-2  text-lg color-box placeholder:text-sm select-none"
+        className={`${
+          isCheck ? "line-through" : ""
+        } w-11/12 bg-inherit outline-none px-2  text-lg color-box placeholder:text-sm select-none`}
         placeholder="Create a new todo..."
         readOnly
         value={todoItemValue}
