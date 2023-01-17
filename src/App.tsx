@@ -7,26 +7,19 @@ import {
 } from "./components/context/MainContext";
 import { Main } from "./components/Main";
 import { useCRUD } from "./customHook/CRUDHook";
-import { useDisplay } from "./customHook/DisplayHook";
+import { toggleTheme, useDisplay } from "./customHook/DisplayHook";
 const { v4: uuidv4 } = require("uuid");
-/////////////////////////////////////////////////////////
-export enum ThemeColorClass {
-  DARK = "bg-[#161722]",
-  LITHT = "bg-[#fafafa]",
-}
-
-export const toggleTheme = (themeState: ThemeState) => {
-  return themeState === "dark" ? ThemeColorClass.DARK : ThemeColorClass.LITHT;
-};
 /////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function App() {
-  const [todoList, setTodoList] = useState<TodoListState[]>(
-    [] as TodoListState[]
-  );
+  const [todoList, setTodoList] = useState<TodoListState[]>([
+    { isCheck: false, todoItem: "watch movie", todoId: "1" },
+    { isCheck: false, todoItem: "do homework", todoId: "2" },
+    { isCheck: false, todoItem: "play gmae", todoId: "3" },
+  ] as TodoListState[]);
   const [cpyTodoList, setCpyTodoList] = useState<TodoListState[]>(
     [] as TodoListState[]
   );
@@ -56,7 +49,7 @@ function App() {
   } = useCRUD({ setTodoList, todoList, uuidv4 });
 
   //////////////////////////////////////////////////////////////////////
-  console.count("app render");
+
   const value = {
     todoList,
     setTodoList,
@@ -73,7 +66,7 @@ function App() {
     changeTheme,
   };
   return (
-    <div className={`App ${toggleTheme(theme)}`}>
+    <div className={`App   ${toggleTheme(theme)}`}>
       <MainContext.Provider value={value}>
         <Main />
       </MainContext.Provider>

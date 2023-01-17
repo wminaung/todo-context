@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { toggleThemeInput } from "../customHook/DisplayHook";
 import { MainContext } from "./context/MainContext";
 import { IconCross } from "./svg";
 
@@ -15,16 +16,21 @@ export const Task = ({
   todoId,
   isCheck,
 }: TaskProps) => {
-  const { handleTaskDelete } = useContext(MainContext);
+  const { handleTaskDelete, theme } = useContext(MainContext);
 
   return (
-    <div className="py-4 bg-box   flex justify-between items-center px-3  border-b border-[#4d5066]">
+    <div
+      draggable
+      className={`py-4 ${toggleThemeInput(
+        theme
+      )}  flex  justify-between items-center px-3  border-b border-[#4d5066]`}
+    >
       {children}
       <input
         type="text"
         className={`${
           isCheck ? "line-through" : ""
-        } w-11/12 bg-inherit outline-none px-2  text-lg color-box placeholder:text-sm select-none`}
+        } w-11/12 cursor-default  bg-inherit outline-none px-2  text-lg text-inherit placeholder:text-sm select-none`}
         placeholder="Create a new todo..."
         readOnly
         value={todoItemValue}

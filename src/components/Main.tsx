@@ -15,10 +15,10 @@ export const Main = () => {
   const { cpyTodoList, theme } = useContext(MainContext);
 
   return (
-    <div className={`Main my-0 mx-auto pt-12`}>
+    <main className={`Main  my-0 mx-auto pt-12`}>
       <img
         src={bgMbDk}
-        className={"absolute z-0 top-0 left-0 w-full h-2/5"}
+        className={"absolute z-0 top-0  left-0 w-full h-2/5"}
         alt="backgroundImg"
       />
       <Heading h1="TODO">
@@ -29,6 +29,7 @@ export const Main = () => {
       </CreateTaskInput>
       {/* Todo Input */}
       <div className="py-5"></div>
+
       <TodoTasks>
         {cpyTodoList.map((todo, idx) => (
           <Task
@@ -49,7 +50,8 @@ export const Main = () => {
           }
         />
       </ActionTasks>
+
       <div className="py-20"></div>
-    </div>
+    </main>
   );
 };

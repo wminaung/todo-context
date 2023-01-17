@@ -1,7 +1,7 @@
 import React from "react";
 import { TodoListState } from "../components/context/MainContext";
 
-type UseCRUDProps = {
+export type UseCRUDProps = {
   setTodoList: (value: React.SetStateAction<TodoListState[]>) => void;
   todoList: TodoListState[];
   uuidv4: any;

@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-import { ThemeProps } from "../Theme";
 
 export type TodoListState = {
   todoItem: string;

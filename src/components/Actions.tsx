@@ -36,10 +36,12 @@ export const Actions = ({ className }: ActionsProps) => {
     return openAction === action ? "opacity-100" : "opacity-50";
   };
   return (
-    <div className={` ${className} sm:static sm:w-1/3`}>
+    <div
+      className={` ${className} sm:static sm:w-1/3 sm:shadow-none shadow-sm shadow-slate-800 `}
+    >
       <button
         onClick={handleShowAll}
-        className={`${createCss(OpenAction.ALL)}  hover:opacity-80`}
+        className={`${createCss(OpenAction.ALL)}  hover:opacity-80 `}
       >
         All
       </button>

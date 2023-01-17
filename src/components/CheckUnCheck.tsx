@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { MainContext } from "./context/MainContext";
 import { CircleCheckSolid, CircleRegular } from "./svg";
-const checkUnCheckCss = `w-6`;
-const circleRegularCss = `fill-circle cursor-pointer active:opacity-80`;
-const circleCheckCss = ` cursor-pointer active:opacity-80`;
 
 export type CheckUnCheckProps = {
   check?: boolean;
@@ -16,7 +13,9 @@ export const CheckUnCheck = ({
   todoId,
 }: CheckUnCheckProps) => {
   const { handleCheckUnCheckOnClick } = useContext(MainContext);
-
+  const checkUnCheckCss = `w-6 `;
+  const circleRegularCss = `fill-circle cursor-pointer active:opacity-80`;
+  const circleCheckCss = ` cursor-pointer active:opacity-80`;
   if (readonly) {
     return <CircleRegular className={` ${checkUnCheckCss}  fill-circle`} />;
   }

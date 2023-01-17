@@ -26,9 +26,9 @@ body {
   --linear-gradient: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
   /* light theme */
-  --very-light-gray: hsl(0, 0%, 98%);
-  --very-light-grayish-bluel: hsl(236, 33%, 92%);
-  --light-grayish-bluel: hsl(233, 11%, 84%);
+  --very-light-gray: #fafafa;
+  --very-light-grayish-bluel: #e4e5f1;
+  --light-grayish-bluel: #d2d3db;
   --dark-grayish-bluel: hsl(236, 9%, 61%);
   --very-dark-grayish-bluel: hsl(235, 19%, 35%);
 
@@ -36,7 +36,7 @@ body {
   --very-dark-blue: hsl(235, 21%, 11%);
   --very-dark-desaturated-blue: hsl(235, 24%, 19%);
   --light-grayish-blue: hsl(234, 39%, 85%);
-  --light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --light-grayish-blue-hover: #e4e5f1;
   --dark-grayish-blue: hsl(234, 11%, 52%);
   --very-dark-grayish-blue: hsl(233, 14%, 35%);
   --very-dark-grayish-blue: hsl(237, 14%, 26%);
@@ -47,28 +47,14 @@ body {
   /* font */
   --family: "Josefin Sans", sans-serif;
 }
-/* ultai */
-.bg-box {
-  background-color: var(--very-dark-desaturated-blue);
-}
-.color-box {
-  color: var(--light-grayish-blue);
-}
+
 .fill-circle {
   fill: var(--light-grayish-blue);
 }
 .fill-cross {
   fill: var(--light-grayish-bluel);
 }
-.fill-check-circle {
-}
 
-.dd {
-  color: #393a4c;
-  color: #fafafa;
-  color: #4d5066;
-  color: #161722;
-}
 #todo {
   letter-spacing: 8px;
 }
