@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import "./App.css";
+import { OpenAction } from "./components/Actions";
 import {
   MainContext,
   ThemeState,
@@ -16,17 +19,21 @@ const { v4: uuidv4 } = require("uuid");
 
 function App() {
   const [todoList, setTodoList] = useState<TodoListState[]>([
-    { isCheck: false, todoItem: "watch movie", todoId: "1" },
-    { isCheck: false, todoItem: "do homework", todoId: "2" },
-    { isCheck: false, todoItem: "play gmae", todoId: "3" },
+    { isCheck: false, todoItem: "1. watch movie", todoId: "1xid" },
+    { isCheck: true, todoItem: "2. do homework", todoId: "2xid" },
+    { isCheck: false, todoItem: "3. play game", todoId: "3xid" },
+    { isCheck: true, todoItem: "4. clean house", todoId: "4xid" },
+    { isCheck: false, todoItem: "5. learn new thing", todoId: "5xid" },
   ] as TodoListState[]);
   const [cpyTodoList, setCpyTodoList] = useState<TodoListState[]>(
     [] as TodoListState[]
   );
   const [theme, setTheme] = useState<ThemeState>("dark");
+  const [mode, setMode] = useState<OpenAction>(OpenAction.ALL);
 
   useEffect(() => {
     setCpyTodoList([...todoList]);
+    setMode(OpenAction.ALL);
   }, [todoList]);
 
   //////////////////////////////////////////////////////////////////////
@@ -36,6 +43,7 @@ function App() {
     setCpyTodoList,
     setTheme,
     todoList,
+    setMode,
   });
 
   //////////////////////////////////////////////////////////////////////
@@ -64,11 +72,15 @@ function App() {
     showCompleted,
     cpyTodoList,
     changeTheme,
+    setCpyTodoList,
+    mode,
   };
   return (
     <div className={`App   ${toggleTheme(theme)}`}>
       <MainContext.Provider value={value}>
-        <Main />
+        <DndProvider backend={HTML5Backend}>
+          <Main />
+        </DndProvider>
       </MainContext.Provider>
     </div>
   );

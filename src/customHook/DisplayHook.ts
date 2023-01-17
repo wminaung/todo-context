@@ -1,25 +1,30 @@
-import React from "react";
+import { OpenAction } from "../components/Actions";
 import { ThemeState, TodoListState } from "../components/context/MainContext";
 
 export type UseDisplayProps = {
   todoList: TodoListState[];
   setCpyTodoList: (value: React.SetStateAction<TodoListState[]>) => void;
   setTheme: (value: React.SetStateAction<ThemeState>) => void;
+  setMode: React.Dispatch<React.SetStateAction<OpenAction>>;
 };
 
 export const useDisplay = ({
   setCpyTodoList,
   todoList,
   setTheme,
+  setMode,
 }: UseDisplayProps) => {
   const showAll = () => {
     setCpyTodoList([...todoList]);
+    setMode(OpenAction.ALL);
   };
   const showActive = () => {
     setCpyTodoList(todoList.filter((todo) => !todo.isCheck));
+    setMode(OpenAction.ACTIVE);
   };
   const showCompleted = () => {
     setCpyTodoList(todoList.filter((todo) => todo.isCheck));
+    setMode(OpenAction.COMPLETED);
   };
 
   const changeTheme = (theme: ThemeState) => {

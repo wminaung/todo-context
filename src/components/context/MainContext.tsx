@@ -1,4 +1,5 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
+import { OpenAction } from "../Actions";
 
 export type TodoListState = {
   todoItem: string;
@@ -22,7 +23,9 @@ export type MainContextProps = {
   showActive: () => void;
   showCompleted: () => void;
   cpyTodoList: TodoListState[];
+  setCpyTodoList: React.Dispatch<React.SetStateAction<TodoListState[]>>;
   changeTheme: (theme: ThemeState) => void;
+  mode: OpenAction;
 };
 
 export const MainContext = createContext<MainContextProps>(

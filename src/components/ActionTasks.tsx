@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { toggleThemeInput } from "../customHook/DisplayHook";
 
 import { MainContext } from "./context/MainContext";

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MainContext } from "./context/MainContext";
 /** justify-between w-1/3 */
 
 type ActionsProps = {
   className: string;
 };
-enum OpenAction {
+export enum OpenAction {
   ALL = "all",
   ACTIVE = "active",
   COMPLETED = "completed",

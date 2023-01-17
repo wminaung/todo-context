@@ -2,39 +2,40 @@ import { Actions } from "./Actions";
 import { ActionTasks } from "./ActionTasks";
 import { CheckUnCheck } from "./CheckUnCheck";
 import { CreateTaskInput } from "./CreateTaskInput";
-import bgMbDk from "./../assets/images/bg-mobile-dark.jpg";
-//import bgDtDk from "./../assets/images/bg-desktop-dark.jpg";
+
 import { Heading } from "./Heading";
 import { Theme } from "./Theme";
 import { useContext } from "react";
 import { MainContext } from "./context/MainContext";
 import { Task } from "./Task";
 import { TodoTasks } from "./TodoTasks";
+import { Image } from "./Image";
+const { v4: uuidv4 } = require("uuid");
 
 export const Main = () => {
   const { cpyTodoList, theme } = useContext(MainContext);
 
   return (
     <main className={`Main  my-0 mx-auto pt-12`}>
-      <img
-        src={bgMbDk}
-        className={"absolute z-0 top-0  left-0 w-full h-2/5"}
-        alt="backgroundImg"
-      />
+      <Image theme={theme} />
+
       <Heading h1="TODO">
         <Theme theme={theme} />
       </Heading>
+      {/* Heading  */}
+
       <CreateTaskInput>
         <CheckUnCheck readonly />
       </CreateTaskInput>
       {/* Todo Input */}
+
       <div className="py-5"></div>
 
       <TodoTasks>
         {cpyTodoList.map((todo, idx) => (
           <Task
-            key={idx}
-            todoItemValue={todo.todoItem}
+            key={uuidv4()}
+            todoItemValue={`${todo.todoItem}`}
             todoId={todo.todoId}
             isCheck={todo.isCheck}
           >
@@ -43,6 +44,7 @@ export const Main = () => {
         ))}
       </TodoTasks>
       {/* Show todo Listing */}
+
       <ActionTasks>
         <Actions
           className={
@@ -50,8 +52,15 @@ export const Main = () => {
           }
         />
       </ActionTasks>
+      {/* Action and info */}
 
-      <div className="py-20"></div>
+      <div
+        className={`py-20 text-center font-semibold ${
+          theme === "light" ? "text-[#080808]" : "text-[#b3b3b3]"
+        }`}
+      >
+        Drag & drop to reorder list
+      </div>
     </main>
   );
 };
