@@ -19,11 +19,31 @@ const { v4: uuidv4 } = require("uuid");
 
 function App() {
   const [todoList, setTodoList] = useState<TodoListState[]>([
-    { isCheck: false, todoItem: "1. watch movie", todoId: "1xid" },
-    { isCheck: true, todoItem: "2. do homework", todoId: "2xid" },
-    { isCheck: false, todoItem: "3. play game", todoId: "3xid" },
-    { isCheck: true, todoItem: "4. clean house", todoId: "4xid" },
-    { isCheck: false, todoItem: "5. learn new thing", todoId: "5xid" },
+    {
+      idd: uuidv4(),
+      isCheck: false,
+      todoItem: "1. watch movie",
+      todoId: "1xid",
+    },
+    {
+      idd: uuidv4(),
+      isCheck: true,
+      todoItem: "2. do homework",
+      todoId: "2xid",
+    },
+    { idd: uuidv4(), isCheck: false, todoItem: "3. play game", todoId: "3xid" },
+    {
+      idd: uuidv4(),
+      isCheck: true,
+      todoItem: "4. clean house",
+      todoId: "4xid",
+    },
+    {
+      idd: uuidv4(),
+      isCheck: false,
+      todoItem: "5. learn new thing",
+      todoId: "5xid",
+    },
   ] as TodoListState[]);
   const [cpyTodoList, setCpyTodoList] = useState<TodoListState[]>(
     [] as TodoListState[]

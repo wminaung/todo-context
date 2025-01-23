@@ -26,6 +26,7 @@ export const useCRUD = ({ setTodoList, todoList, uuidv4 }: UseCRUDProps) => {
       setTodoList([
         ...todoList,
         {
+          idd: uuidv4(),
           isCheck: false,
           todoItem: inputRef.current?.value,
           todoId: uuidv4(),
