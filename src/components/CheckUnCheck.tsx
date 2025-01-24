@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { MainContext } from "./context/MainContext";
 import { CircleCheckSolid, CircleRegular } from "./svg";
+import { TodoContext } from "./context/TodoContext";
 
 export type CheckUnCheckProps = {
   check?: boolean;
@@ -12,10 +12,25 @@ export const CheckUnCheck = ({
   readonly,
   todoId,
 }: CheckUnCheckProps) => {
-  const { handleCheckUnCheckOnClick } = useContext(MainContext);
+  const { todoList, setTodoList } = useContext(TodoContext);
   const checkUnCheckCss = `w-6 `;
   const circleRegularCss = `fill-circle cursor-pointer active:opacity-80`;
   const circleCheckCss = ` cursor-pointer active:opacity-80`;
+
+  const handleCheckUnCheckOnClick = () => {
+    setTodoList(
+      todoList.map((todo) => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            isCheck: !todo.isCheck,
+          };
+        }
+        return todo;
+      })
+    );
+  };
+
   if (readonly) {
     return <CircleRegular className={` ${checkUnCheckCss}  fill-circle`} />;
   }
@@ -23,11 +38,7 @@ export const CheckUnCheck = ({
   return (
     <button
       onClick={() => {
-        if (todoId) {
-          handleCheckUnCheckOnClick(todoId);
-        } else {
-          console.log("todoId is not there");
-        }
+        handleCheckUnCheckOnClick();
       }}
     >
       {check ? (

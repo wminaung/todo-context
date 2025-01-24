@@ -1,17 +1,36 @@
 import { useContext, useRef } from "react";
 import { toggleThemeInput } from "../customHook/DisplayHook";
-
-import { MainContext } from "./context/MainContext";
+import { v4 as uuidv4 } from "uuid";
+import { TodoContext } from "./context/TodoContext";
 
 type CreateTaskInputProps = {
   children: React.ReactNode; //<CheckUnCheck/>
 };
 
 export const CreateTaskInput = ({ children }: CreateTaskInputProps) => {
-  const { handleCreateTaskInputKeyup, theme } = useContext(MainContext);
+  const { theme, todoList, setTodoList } = useContext(TodoContext);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const handleCreateTaskInputKeyup = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "Enter" && inputRef.current) {
+      if (inputRef.current?.value.trim() === "") {
+        alert("Please enter a task");
+        return;
+      }
 
+      setTodoList([
+        ...todoList,
+        {
+          id: uuidv4(),
+          isCheck: false,
+          todoItem: inputRef.current.value,
+        },
+      ]);
+      inputRef.current.value = "";
+    }
+  };
   return (
     <div
       className={` w-11/12 ${toggleThemeInput(
@@ -21,9 +40,7 @@ export const CreateTaskInput = ({ children }: CreateTaskInputProps) => {
       {children}
       <input
         ref={inputRef}
-        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          handleCreateTaskInputKeyup(e, inputRef);
-        }}
+        onKeyUp={handleCreateTaskInputKeyup}
         type="text"
         className={`w-11/12  bg-inherit text-inherit  outline-none px-2  text-lg  placeholder:text-sm select-none`}
         placeholder="Create a new todo..."

@@ -1,5 +1,5 @@
-import { OpenAction } from "../components/Actions";
 import { ThemeState, TodoListState } from "../components/context/MainContext";
+import { OpenAction } from "../components/context/TodoContext";
 
 export type UseDisplayProps = {
   todoList: TodoListState[];

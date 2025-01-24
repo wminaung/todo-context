@@ -5,22 +5,38 @@ import { CreateTaskInput } from "./CreateTaskInput";
 
 import { Heading } from "./Heading";
 import { Theme } from "./Theme";
-import { useContext } from "react";
-import { MainContext } from "./context/MainContext";
+import { useContext, useEffect, useState } from "react";
 import { Task } from "./Task";
 import { TodoTasks } from "./TodoTasks";
 import { Image } from "./Image";
-const { v4: uuidv4 } = require("uuid");
+import { OpenAction, TodoContext } from "./context/TodoContext";
 
 export const Main = () => {
-  const { cpyTodoList, theme } = useContext(MainContext);
+  const { todoList, theme, openAction, showIds, setShowIds } =
+    useContext(TodoContext);
+
+  useEffect(() => {
+    if (openAction === OpenAction.ALL) {
+      setShowIds(todoList.map((todo) => todo.id));
+    } else if (openAction === OpenAction.ACTIVE) {
+      setShowIds(
+        todoList.filter((todo) => todo.isCheck === false).map((todo) => todo.id)
+      );
+    } else if (openAction === OpenAction.COMPLETED) {
+      setShowIds(
+        todoList.filter((todo) => todo.isCheck === true).map((todo) => todo.id)
+      );
+    }
+  }, [openAction, setShowIds, todoList]);
+
+  const showTodoList = todoList.filter((todo) => showIds.includes(todo.id));
 
   return (
     <main className={`Main  my-0 mx-auto pt-12`}>
       <Image theme={theme} />
 
       <Heading h1="TODO">
-        <Theme theme={theme} />
+        <Theme />
       </Heading>
       {/* Heading  */}
 
@@ -32,14 +48,9 @@ export const Main = () => {
       <div className="py-5"></div>
 
       <TodoTasks>
-        {cpyTodoList.map((todo, idx) => (
-          <Task
-            key={uuidv4()}
-            todoItemValue={`${todo.todoItem}`}
-            todoId={todo.todoId}
-            isCheck={todo.isCheck}
-          >
-            <CheckUnCheck check={todo.isCheck} todoId={todo.todoId} />
+        {showTodoList.map((todo) => (
+          <Task key={todo.id} todo={todo}>
+            <CheckUnCheck todoId={todo.id} check={todo.isCheck} />
           </Task>
         ))}
       </TodoTasks>

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { OpenAction } from "../Actions";
+import { OpenAction } from "./TodoContext";
 
 export type TodoListState = {
   idd: string;
