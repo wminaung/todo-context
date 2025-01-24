@@ -34,7 +34,7 @@ export const Main = () => {
       <TodoTasks>
         {cpyTodoList.map((todo, idx) => (
           <Task
-            key={uuidv4()}
+            key={todo.todoId}
             todoItemValue={`${todo.todoItem}`}
             todoId={todo.todoId}
             isCheck={todo.isCheck}

@@ -30,16 +30,19 @@ export const Task = ({
     }),
   }));
 
-  const [{ overClass }, dropRef] = useDrop(() => ({
-    accept: "todo",
-    drop: (item: any) => doDropFun(item.id),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      overClass: monitor.isOver() ? "bg-[#4d5066] transform scale-95 " : "",
+  const [{ overClass }, dropRef] = useDrop(
+    () => ({
+      accept: "todo",
+      drop: (item: any) => doDropFun(item.id),
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        overClass: monitor.isOver() ? "bg-[#4d5066] transform scale-95 " : "",
+      }),
     }),
-  }));
+    [todoList]
+  );
 
-  const doDropFun = (id: "num") => {
+  const doDropFun = (id: string) => {
     if (id === todoId) return;
 
     const dropItemIdx = todoList.findIndex((todo) => todo.todoId === todoId);
