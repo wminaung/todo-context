@@ -10,7 +10,7 @@ export type TaskProps = {
 };
 
 export const Task = ({ children, todo }: TaskProps) => {
-  const { setTodoList, todoList, theme, openAction } = useContext(TodoContext);
+  const { setTodoList, todoList, theme } = useContext(TodoContext);
 
   const [{ bgClassName }, dragRef] = useDrag(() => ({
     type: "todo",
