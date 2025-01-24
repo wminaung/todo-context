@@ -1,15 +1,19 @@
 import { useContext } from "react";
-import { toggleThemeInput } from "../customHook/DisplayHook";
-
-import { MainContext } from "./context/MainContext";
+import { toggleThemeInput } from "../utils/theme-utils";
+import { TodoContext } from "./context/TodoContext";
 
 type ActionTasksProps = {
   children: React.ReactNode; //<Actions/>
 };
 
 export const ActionTasks = ({ children }: ActionTasksProps) => {
-  const { todoList, handleClearComplete, theme } = useContext(MainContext);
+  const { todoList, theme, setTodoList } = useContext(TodoContext);
   const leftItems = todoList.filter((todo) => !todo.isCheck).length;
+
+  const handleClearComplete = () => {
+    setTodoList(todoList.filter((todo) => !todo.isCheck));
+  };
+
   return (
     <div
       className={`relative py-4 ${toggleThemeInput(

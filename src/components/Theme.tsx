@@ -1,15 +1,12 @@
 import { useContext } from "react";
-import { MainContext } from "./context/MainContext";
 import { IconMoon, IconSun } from "./svg";
+import { TodoContext } from "./context/TodoContext";
 
-export type ThemeProps = {
-  theme: "dark" | "light";
-};
-export const Theme = ({ theme }: ThemeProps) => {
-  const { changeTheme } = useContext(MainContext);
+export const Theme = () => {
+  const { setTheme, theme } = useContext(TodoContext);
 
   const handleChangeTheme = () => {
-    changeTheme(theme);
+    theme === "dark" ? setTheme("light") : setTheme("dark");
   };
 
   const themeClass = "cursor-pointer hover:opacity-70";

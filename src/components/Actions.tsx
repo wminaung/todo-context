@@ -1,35 +1,22 @@
-import { useContext, useEffect, useState } from "react";
-import { MainContext } from "./context/MainContext";
+import { useContext } from "react";
+import { OpenAction, TodoContext } from "./context/TodoContext";
 /** justify-between w-1/3 */
 
 type ActionsProps = {
   className: string;
 };
-export enum OpenAction {
-  ALL = "all",
-  ACTIVE = "active",
-  COMPLETED = "completed",
-}
-export const Actions = ({ className }: ActionsProps) => {
-  const { todoList, showAll, showActive, showCompleted } =
-    useContext(MainContext);
-  const [openAction, setOpenAction] = useState<OpenAction>(OpenAction.ALL);
 
-  useEffect(() => {
-    setOpenAction(OpenAction.ALL);
-  }, [todoList]);
+export const Actions = ({ className }: ActionsProps) => {
+  const { openAction, setOpenAction } = useContext(TodoContext);
 
   const handleShowAll = () => {
     setOpenAction(OpenAction.ALL);
-    showAll();
   };
   const handleShowActive = () => {
     setOpenAction(OpenAction.ACTIVE);
-    showActive();
   };
   const handleShowCompleted = () => {
     setOpenAction(OpenAction.COMPLETED);
-    showCompleted();
   };
 
   const createCss = (action: OpenAction) => {
