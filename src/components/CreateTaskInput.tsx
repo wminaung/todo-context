@@ -11,6 +11,7 @@ export const CreateTaskInput = ({ children }: CreateTaskInputProps) => {
   const { theme, todoList, setTodoList } = useContext(TodoContext);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
   const handleCreateTaskInputKeyup = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -31,6 +32,7 @@ export const CreateTaskInput = ({ children }: CreateTaskInputProps) => {
       inputRef.current.value = "";
     }
   };
+
   return (
     <div
       className={` w-11/12 ${toggleThemeInput(

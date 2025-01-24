@@ -35,7 +35,7 @@ function App() {
   };
 
   return (
-    <div className={`App   ${toggleTheme(theme)}`}>
+    <div className={`App   ${toggleTheme(theme)}`} data-testid="app-container">
       <TodoContext.Provider value={{ ...defaultTodoContext, ...value }}>
         <DndProvider backend={HTML5Backend}>
           <Main />

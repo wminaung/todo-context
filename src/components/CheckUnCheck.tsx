@@ -13,6 +13,7 @@ export const CheckUnCheck = ({
   todoId,
 }: CheckUnCheckProps) => {
   const { todoList, setTodoList } = useContext(TodoContext);
+
   const checkUnCheckCss = `w-6 `;
   const circleRegularCss = `fill-circle cursor-pointer active:opacity-80`;
   const circleCheckCss = ` cursor-pointer active:opacity-80`;

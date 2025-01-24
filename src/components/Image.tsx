@@ -1,9 +1,9 @@
-import { ThemeState } from "./context/MainContext";
 import bgMbDk from "./../assets/images/bg-mobile-dark.jpg";
 import bgDtDk from "./../assets/images/bg-desktop-dark.jpg";
 import bgMbLt from "./../assets/images/bg-mobile-light.jpg";
 import bgDtLt from "./../assets/images/bg-desktop-light.jpg";
 import { memo, useEffect, useState } from "react";
+import { ThemeState } from "./context/TodoContext";
 
 type ImageProps = {
   theme: ThemeState;

@@ -5,31 +5,16 @@ import { CreateTaskInput } from "./CreateTaskInput";
 
 import { Heading } from "./Heading";
 import { Theme } from "./Theme";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Task } from "./Task";
 import { TodoTasks } from "./TodoTasks";
 import { Image } from "./Image";
-import { OpenAction, TodoContext } from "./context/TodoContext";
+import { TodoContext } from "./context/TodoContext";
+import useShowIds from "../hooks/useShowIds";
 
 export const Main = () => {
-  const { todoList, theme, openAction, showIds, setShowIds } =
-    useContext(TodoContext);
-
-  useEffect(() => {
-    if (openAction === OpenAction.ALL) {
-      setShowIds(todoList.map((todo) => todo.id));
-    } else if (openAction === OpenAction.ACTIVE) {
-      setShowIds(
-        todoList.filter((todo) => todo.isCheck === false).map((todo) => todo.id)
-      );
-    } else if (openAction === OpenAction.COMPLETED) {
-      setShowIds(
-        todoList.filter((todo) => todo.isCheck === true).map((todo) => todo.id)
-      );
-    }
-  }, [openAction, setShowIds, todoList]);
-
-  const showTodoList = todoList.filter((todo) => showIds.includes(todo.id));
+  const { theme } = useContext(TodoContext);
+  const { showTodoList } = useShowIds();
 
   return (
     <main className={`Main  my-0 mx-auto pt-12`}>
